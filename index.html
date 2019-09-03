@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+
+    <title>Position Randomizer</title>
+    <meta name="description" content="Randomizer">
+    <meta name="author" content="Miłosz Stolarczyk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="element">
+            <input type="text" class="nick" id="nick1">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check1">
+                <span>Force position</span>
+                <select class="position" id="position1">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick2">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check2">
+                <span>Force position</span>
+                <select class="position" id="position2">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        
+        <div class="element">
+            <input type="text" class="nick" id="nick3">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check3">
+                <span>Force position</span>
+                <select class="position" id="position3">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick4">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check4">
+                <span>Force position</span>
+                <select class="position" id="position4">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick5">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check5">
+                <span>Force position</span>
+                <select class="position" id="position5">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick6">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check6">
+                <span>Force position</span>
+                <select class="position" id="position6">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick7">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check7">
+                <span>Force position</span>
+                <select class="position" id="position7">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick8">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check8">
+                <span>Force position</span>
+                <select class="position" id="position8">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick9">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check9">
+                <span>Force position</span>
+                <select class="position" id="position9">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <div class="element">
+            <input type="text" class="nick" id="nick10">
+            <div class="force">
+                <input type="checkbox" class="check"  id="check10">
+                <span>Force position</span>
+                <select class="position" id="position10">
+                    <option value="Top">Top</option> 
+                    <option value="Jungle">Jungle</option> 
+                    <option value="Mid">Mid</option> 
+                    <option value="Bottom">Bottom</option> 
+                    <option value="Support">Support</option> 
+                </select>
+            </div>
+        </div>
+        <input type="button" id="submit" onclick="randomizePlayers()" value="Randomize">
+    </div>
+    <div id="results">
+        <table id="teamTable">
+            <tr>
+                <th>Team 1</th>
+                <th>Position</th>
+                <th>Team 2</th>
+            </tr>
+            <tr>
+                <td>Nick1</td>
+                <td>Top</td>
+                <td>Nick2</td>
+            </tr>
+            <tr>
+                <td>Nick1</td>
+                <td>Jungle</td>
+                <td>Nick2</td>
+            </tr>
+            <tr>
+                <td>Nick1</td>
+                <td>Mid</td>
+                <td>Nick2</td>
+            </tr>
+            <tr>
+                <td>Nick1</td>
+                <td>Bottom</td>
+                <td>Nick2</td>
+            </tr>
+            <tr>
+                <td>Nick1</td>
+                <td>Support</td>
+                <td>Nick2</td>
+            </tr>
+        </table>
+        <div class="buttonBar">
+            <input type="button" class="closeButton" onclick="closeResults()" value="Ok">   
+        </div>
+    </div>
+</body>
+</html>
