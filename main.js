@@ -238,7 +238,5 @@ function rollAgain()
         team2.push(team1[playerIndex]);
         team1.splice(playerIndex, 1);
     }
-    console.log(team1);
-    console.log(team2);
     setTeams(team1, team2);
 }
