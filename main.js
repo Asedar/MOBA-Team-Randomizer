@@ -10,6 +10,8 @@ class Player
 var players = [new Player(), new Player(), new Player(), new Player(), new Player(), new Player(),
                new Player(), new Player(), new Player(), new Player()];
 var roles = ["Top", "Jungle", "Mid", "Bottom", "Support"];
+
+loadNicks();
 function randomizePlayers()
 {
     var team1 = [...players];
@@ -17,9 +19,14 @@ function randomizePlayers()
     var positions = ["Top", "Top", "Jungle", "Jungle", "Mid", "Mid", "Bottom", "Bottom", "Support", "Support"];
     var team = [];
 
+    var nicksToSave = [];
+
     for(var x = 0; x < 10; x++)
     {
-        players[x].nick = document.getElementById("nick" + (x + 1)).value;
+        var nick = document.getElementById("nick" + (x + 1)).value;
+        players[x].nick = nick;
+        nicksToSave.push(nick);
+
         if(document.getElementById("check" + (x + 1)).checked == true)
         {
             let pos = document.getElementById("position" + (x + 1)).value;
@@ -43,6 +50,7 @@ function randomizePlayers()
             players[x].previousPosition = "";
         }
     }
+    localStorage.setItem('nicks', JSON.stringify(nicksToSave));
 
     for (var i = team1.length - 1; i > 0; i--) 
     {
@@ -101,4 +109,16 @@ function closeResults()
     });
     document.getElementById("results").style.display = "none";
     document.getElementById("submit").disabled = false;
+}
+
+function loadNicks()
+{
+    var storedNicks = JSON.parse(localStorage.getItem("nicks"));
+    if(storedNicks)
+    {
+        for(var x = 0; x < storedNicks.length; x++)
+        {
+            document.getElementById("nick" + (x + 1)).value = storedNicks[x];
+        }
+    }
 }
