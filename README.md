@@ -4,5 +4,4 @@ Simple web app designed to randomly divide 10 players into 2 teams in MOBA games
 
 Functionalities:
 * force and avoid position if we want to have more impact on how those positions would be assigned. 
-* all player nicks provided and used in current session will be stored in browser's local storage and loaded in the next session. 
 * "Roll again" which ensures that(whenever it is possible) each player would be assigned with different position than in the last roll.
