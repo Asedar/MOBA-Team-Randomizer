@@ -1,0 +1,34 @@
+<div class="dialog-container">
+
+  <div class="header">
+    <h1 class="colored">Options</h1>
+    <div class="close" (click)="exit()"></div>
+  </div>
+  
+  <div mat-dialog-content>
+    <label id="radio-group-label">Choose game type:</label>
+    <mat-radio-group class="dialog-radio" aria-labelledby="radio-group-label" [(ngModel)]="gameType">
+      <mat-radio-button value="MOBA">MOBA</mat-radio-button>
+      <mat-radio-button value="OTHER">Other</mat-radio-button>
+    </mat-radio-group>
+
+    <label id="number-picker-label" [ngClass]="{'disabled': gameType == 'MOBA'}">Number of players in team:</label>
+    <div class="dialog-picker" [ngClass]="{'disabled': gameType == 'MOBA'}">
+      <ng-number-picker aria-labelledby="number-picker-label"
+            [(value)]="numberOfPlayers"
+            [min]="'2'"
+            [max]="'10'"
+            [step]="'1'"
+            [buttonsOrientation]="'h'"
+            [size]="'sm'"
+            [showDownButton]="true"
+            [showUpButton]="true"
+            [inputReadOnly]="false"
+            [mouseWheel]="true"
+            [arrowKeys]="true"
+      ></ng-number-picker>
+    </div>
+    
+  </div>
+  <button class="dialog-button" mat-raised-button mat-dialog-close (click)="save()">Ok</button>
+</div>

@@ -1,0 +1,66 @@
+<div class="dialog-container">
+
+    <div class="header">
+      <h1 class="colored">Results</h1>
+      <div class="close" (click)="exit()"></div>
+    </div>
+    
+    <div mat-dialog-content>
+      <div *ngIf="data.gameType == 'MOBA'" class="team">
+          <div class='position'>
+            <div>{{getTeam1('Top')}}</div> 
+            <h4>Top</h4> 
+            <div>{{getTeam2('Top')}}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class='position'>
+            <div>{{getTeam1('Jungle')}}</div> 
+            <h4>Jungle</h4> 
+            <div>{{getTeam2('Jungle')}}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class='position'>
+            <div>{{getTeam1('Mid')}}</div> 
+            <h4>Mid</h4> 
+            <div>{{getTeam2('Mid')}}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class='position'>
+            <div>{{getTeam1('Bottom')}}</div> 
+            <h4>ADC</h4> 
+            <div>{{getTeam2('Bottom')}}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class='position'>
+            <div>{{getTeam1('Support')}}</div> 
+            <h4>Support</h4> 
+            <div>{{getTeam2('Support')}}</div>
+          </div>
+      </div>
+
+      <div *ngIf="data.gameType != 'MOBA'" class="team">
+        <div class="position">
+          <h3>
+            Team 1
+          </h3>
+          <h3>
+            Team2
+          </h3>
+        </div>
+        <mat-divider></mat-divider>
+        <div  *ngFor="let team of data.team1; let i = index">
+          <div class='position'>
+            <div>{{data.team1[i].nick}}</div> 
+            <div>{{data.team2[i].nick}}</div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        
+    </div>
+    </div>
+    <div class="footer">
+      <button class="dialog-button" mat-raised-button (click)="rollAgain()">Roll again</button>
+      <button class="dialog-button" mat-raised-button mat-dialog-close (click)="exit">Ok</button>
+    </div>
+
+</div>

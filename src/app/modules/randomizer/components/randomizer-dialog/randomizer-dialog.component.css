@@ -1,0 +1,45 @@
+body,html {
+    padding: 0px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialog-container {
+    padding: 5px;
+    min-width: 300px;
+    min-height: 300px;
+    background: white;
+}
+
+.dialog-radio {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.dialog-button {
+    width: 125px;
+    background: #fc0254;
+    color: white;
+}
+
+.dialog-picker {
+    width: 120px;
+}
+
+.close {
+    background-image: url(/assets/img/close.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

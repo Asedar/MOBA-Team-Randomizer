@@ -1,0 +1,58 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close {
+    background-image: url(/assets/img/close.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+}
+
+.position {
+    display: flex;
+    justify-content: space-around;
+}
+
+.position >* {
+    text-align: center;
+    overflow: auto;
+    height: auto;
+    word-break: break-all;
+}
+
+.position :first-child {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.position :last-child {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.dialog-container {
+    min-width: 400px;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer >* {
+    margin: 5px;
+}
+
+h4 {
+    width: 200px;
+}

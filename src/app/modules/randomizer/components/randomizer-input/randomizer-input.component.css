@@ -1,0 +1,36 @@
+.main-container {
+    font-size: 14px;
+    height: 100%;
+}
+
+.bigger  {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nick {
+    width: 100%;
+}
+
+.position {
+    font-size: 12px;
+    width: 100%;
+}
+
+.radio-group > *{
+    margin-right: 10px;
+}
+
+.position-select {
+    width: 100px;
+}
+
+
+:host ::ng-deep .mat-form-field-wrapper{
+    margin: 0 !important;
+    padding: 3px;
+}
+
+mat-error {
+    margin-top: 12px;
+}
