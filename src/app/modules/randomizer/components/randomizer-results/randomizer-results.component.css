@@ -4,7 +4,7 @@
 }
 
 .close {
-    background-image: url(~/assets/img/close.png);
+    background-image: url("~/assets/img/close.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 50px;
