@@ -39,7 +39,7 @@
 }
 
 .options {
-    background: url(/assets/img/options.png);
+    background: url(~/assets/img/options.png);
     background-size: cover;
     width: 60px;
     height: 60px;
