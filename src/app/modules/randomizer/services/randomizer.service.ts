@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Player } from '../models/player.model';
+import {cloneDeep} from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Player } from '../models/player.model';
 export class RandomizerService {
 
   public randomize(players: Player[]){
+    players.forEach(player => delete player.assignedPosition);
     let team1 = [...players];
     let team2 = [];
     let positions = ["Top", "Top", "Jungle", "Jungle", "Mid", "Mid", "Bottom", "Bottom", "Support", "Support"];
@@ -55,19 +57,20 @@ export class RandomizerService {
   }
 
   public rollAgain(players: Player[]) {
+    players.forEach(player => delete player.assignedPosition);
     let team1 = [...players];
     let team2 = [];
     let positions = ["Top", "Top", "Jungle", "Jungle", "Mid", "Mid", "Bottom", "Bottom", "Support", "Support"];
     let roles = ["Top", "Jungle", "Mid", "Bottom", "Support"];
 
-    team1.forEach(x => {
-        if(x.randomizeType != 3 )
-            x.assignedPosition = "";
-        else
-        {
-            positions.splice(positions.indexOf(x.position), 1);
+    team1.forEach((player: Player) => {
+      if(player.randomizeType == 3) {
+        if(positions.indexOf(player.position) != -1) {
+          player.assignedPosition = player.position;
+          positions.splice(positions.indexOf(player.position), 1);
         }
-    });
+      }
+    })
   
     for (let i = team1.length - 1; i > 0; i--) 
     {
@@ -79,7 +82,7 @@ export class RandomizerService {
 
     for(let y = 0; y < 10; y++)
     {
-        if(team1[y].assignedPosition == "")
+        if(!team1[y].assignedPosition)
         {   
             let rand = Math.floor(Math.random() * positions.length);
             team1[y].assignedPosition = positions[rand];
@@ -90,11 +93,19 @@ export class RandomizerService {
 
     for(let x = 9; x >= 0; x--)
     {
-        if(team1[x].randomizeType !== 3 && team1[x].assignedPosition == team1[x].previousPosition)
+        if(team1[x].randomizeType != 3 && team1[x].assignedPosition == team1[x].previousPosition)
         {
             for(let y = 0; y < 10; y++)
             {
-                if(team1[x].randomizeType !== 3 && team1[y].assignedPosition != team1[x].previousPosition && team1[y].previousPosition != team1[x].assignedPosition && (team1[y].randomizeType != 2 || (team1[y].randomizeType == 2 && team1[y].position != team1[x].assignedPosition)) && ( team1[x].randomizeType != 2 || (team1[x].randomizeType == 2 && team1[x].position != team1[y].assignedPosition)))
+                if (team1[y].randomizeType != 3 
+                  && team1[y].assignedPosition != team1[x].previousPosition 
+                  && team1[y].previousPosition != team1[x].assignedPosition 
+                  && (team1[y].randomizeType != 2 
+                      || (team1[y].randomizeType == 2 
+                      && team1[y].position != team1[x].assignedPosition)) 
+                  && (team1[x].randomizeType != 2 
+                      || (team1[x].randomizeType == 2 
+                      && team1[x].position != team1[y].assignedPosition)))
                 {
                     let temp = team1[y].assignedPosition;
                     team1[y].assignedPosition = team1[x].assignedPosition;
@@ -155,6 +166,16 @@ export class RandomizerService {
         team1.splice(g, 1);
     }
     return {team1: team1, team2: team2};
+  }
+
+  saveNicks(players: Player[]): void {
+    const data = players.map(player => player.nick);
+    localStorage.setItem('players', JSON.stringify(data));
+  }
+
+  loadNicks(): Player[] {
+    const data = localStorage.getItem('players');
+    return JSON.parse(data);
   }
 
   constructor() { }

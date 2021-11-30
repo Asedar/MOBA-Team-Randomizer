@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnChanges, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Player } from '../../models/player.model';
@@ -17,7 +17,9 @@ export interface DialogData {
   templateUrl: './randomizer-results.component.html',
   styleUrls: ['./randomizer-results.component.css']
 })
-export class RandomizerResultsComponent implements OnInit {
+export class RandomizerResultsComponent implements OnInit, OnChanges {
+
+  results: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData, 
@@ -26,16 +28,19 @@ export class RandomizerResultsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.team1);
-    console.log(this.data.team2)
+    this.results = this.data
+  }
+
+  ngOnChanges(): void {
+    this.results = this.data
   }
 
   getTeam1(position: string) {
-    return this.data.team1.find(item => item.assignedPosition == position).nick;
+    return this.results.team1.find(item => item.assignedPosition == position).nick;
   }
 
   getTeam2(position: string) {
-    return this.data.team2.find(item => item.assignedPosition == position).nick;
+    return this.results.team2.find(item => item.assignedPosition == position).nick;
   }
 
   exit(): void {
@@ -44,14 +49,14 @@ export class RandomizerResultsComponent implements OnInit {
 
   rollAgain() {
     let result;
-    if(this.data.gameType == 'MOBA') {
-      result = this.randomizerService.rollAgain(this.data.players);
+    if(this.results.gameType == 'MOBA') {
+      result = this.randomizerService.rollAgain(this.results.players);
     }
     else {
-      result = this.randomizerService.randomizeOther(this.data.players);
+      result = this.randomizerService.randomizeOther(this.results.players);
     }
-    this.data.team1 = result.team1;
-    this.data.team2 = result.team2;
+    this.results.team1 = result.team1;
+    this.results.team2 = result.team2;
   }
 
 }

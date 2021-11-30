@@ -6,7 +6,7 @@
     </div>
     
     <div mat-dialog-content>
-      <div *ngIf="data.gameType == 'MOBA'" class="team">
+      <div *ngIf="results.gameType == 'MOBA'" class="team">
           <div class='position'>
             <div>{{getTeam1('Top')}}</div> 
             <h4>Top</h4> 
@@ -38,7 +38,7 @@
           </div>
       </div>
 
-      <div *ngIf="data.gameType != 'MOBA'" class="team">
+      <div *ngIf="results.gameType != 'MOBA'" class="team">
         <div class="position">
           <h3>
             Team 1
@@ -48,10 +48,10 @@
           </h3>
         </div>
         <mat-divider></mat-divider>
-        <div  *ngFor="let team of data.team1; let i = index">
+        <div  *ngFor="let team of results.team1; let i = index">
           <div class='position'>
-            <div>{{data.team1[i].nick}}</div> 
-            <div>{{data.team2[i].nick}}</div>
+            <div>{{results.team1[i].nick}}</div> 
+            <div>{{results.team2[i].nick}}</div>
           </div>
           <mat-divider></mat-divider>
         </div>

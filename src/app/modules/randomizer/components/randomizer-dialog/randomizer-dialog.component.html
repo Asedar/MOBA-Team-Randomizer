@@ -28,7 +28,36 @@
             [arrowKeys]="true"
       ></ng-number-picker>
     </div>
-    
+    <ng-container *ngIf="players">
+      <div class="mt-1">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="loadNicks"id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            Saved nicks
+          </label>
+        </div>
+        <div class="mt-1 row">
+          <div class="col-sm">
+            <table class="table table-striped">
+              <tbody>
+                <tr *ngFor="let player of players.slice(0, players.length / 2)">
+                  <td >{{player}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm">
+            <table class="table table-striped">
+              <tbody>
+                <tr *ngFor="let player of players.slice(players.length / 2, players.length)">
+                  <td >{{player}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
   <button class="dialog-button" mat-raised-button mat-dialog-close (click)="save()">Ok</button>
 </div>

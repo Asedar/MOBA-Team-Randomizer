@@ -31,7 +31,7 @@ export class RandomizerComponent implements OnInit {
         this.gameType = result.gameType;
         this.players = [];
         const numberOfPlayers = this.gameType == 'OTHER' ? result.numberOfPlayers : 5
-        this.createFormGroup(numberOfPlayers);
+        this.createFormGroup(numberOfPlayers, result.loadedPlayers);
         if(!this.formLoaded && this.gameType === 'MOBA') {
           this.playerInputs.valueChanges.subscribe(change => {
             this.checkPositionSettings();
@@ -43,11 +43,11 @@ export class RandomizerComponent implements OnInit {
     });
   }
 
-  createFormGroup(numberOfPlayers: number) {
+  createFormGroup(numberOfPlayers: number, nicks?: string[]) {
     let playerFormTemplate = {};
     for(let i = 0; i < numberOfPlayers * 2; i++) {
       this.players.push(new Player());
-      let playerControlTemplate = {input: new FormControl('', Validators.required)};
+      let playerControlTemplate = {input: new FormControl(nicks && nicks[i] ? nicks[i] : '', Validators.required)};
       if(this.gameType === 'MOBA') {
         playerControlTemplate['position'] = new FormControl('Top', Validators.required);
         playerControlTemplate['randomizeType'] = new FormControl('1', Validators.required);
@@ -59,7 +59,7 @@ export class RandomizerComponent implements OnInit {
 
   randomize() {
     this.playerInputs.markAllAsTouched();
-   if(this.playerInputs.valid) {
+    if(this.playerInputs.valid) {
       Object.keys(this.playerInputs.controls).forEach((key, index) => {
         this.players[index].nick = (this.playerInputs.controls[key] as FormGroup).get('input').value;
         if(this.gameType === 'MOBA') {
@@ -67,14 +67,16 @@ export class RandomizerComponent implements OnInit {
           this.players[index].position = (this.playerInputs.controls[key] as FormGroup).get('position').value;
         }
       });
+      this.randomizeService.saveNicks(this.players)
       let result;
       if(this.gameType === 'MOBA') {
+        console.log(this.players)
         result = this.randomizeService.randomize(this.players);
+        console.log(result)
       } 
       else {
         result = this.randomizeService.randomizeOther(this.players);
       }
-      console.log(this.playerInputs.getRawValue())
       this.showResults(result.team1, result.team2);
     }
   }
